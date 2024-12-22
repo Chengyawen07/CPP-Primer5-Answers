@@ -1,11 +1,35 @@
 # Chapter 9. Sequential Containers
 
 Exercise 9.1:
-Which is the most appropriate—a vector, a deque, or a list—for the following program tasks?Explain the rationale for your choice.If there is no reason to prefer one or another container, explain why not.
+对于下面的程序任务，vector、deque和list哪种容器最为适合？解释你的选择的理由。如果没有哪一种容器优于其他容器，也请解释理由。
 
-(a) Read a fixed number of words, inserting them in the container alphabetically as they are entered. We’ll see in the next chapter that associative containers are better suited to this problem.
-(b) Read an unknown number of words. Always insert new words at the back. Remove the next value from the front.
-(c) Read an unknown number of integers from a file. Sort the numbers and then print them to standard output.
-(a) Within the three options, std::list is the best one. To keep sorted alphabetically, each inserting into vector takes theta(n) time complexity, whereas that of list (essentially doubly linked list) takes only O(n). Hence theoretically list has better performance.
-(b) deque. If the program needs to insert or delete elements at the front and the back, but not in the middle, use a deque
-(c) vector, no need that insert or delete at the front or back. and If your program has lots of small elements and space overhead matters, don’t use list or forward_list.
+Ans:
+(a) 读取固定数量的单词，将它们按字典序插入到容器中。我们将在下一章中看到，关联容器更适合这个问题。
+    list. 
+
+(b) 读取未知数量的单词，总是将单词插入到末尾。删除操作在头部进行。
+    deque
+
+(c) 从一个文件读取未知数量的整数。将这些数排序，然后将它们打印到标准输出。
+    vector
+
+Exercise 9.2:
+定义一个list对象，其元素类型是int的deque。
+
+Ans:
+std::list<std::deque<int>>
+
+
+Exercise 9.3:
+构成迭代器范围的迭代器有何限制？
+
+Ans:
+构成迭代器范围的迭代器需要满足以下条件：
+来自同一容器。
+begin 不晚于 end。
+容器在迭代器范围使用期间是有效的。
+范围内的迭代器类型一致。
+避免在迭代器范围使用期间修改容器。
+
+
+
